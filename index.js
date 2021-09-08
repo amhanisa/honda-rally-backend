@@ -21,6 +21,27 @@ app.get("/", (req, res) => {
   res.send("Honda Rally Backend");
 });
 
+app.get("/checkAccess", (req, res) => {
+  pool.query(
+    `SELECT value FROM config WHERE setting='enable_website'`,
+    (err, rows) => {
+      console.log(rows);
+      res.send(rows[0].value);
+    }
+  );
+});
+
+app.post("/toggleEnableWebsite", (req, res) => {
+  const value = req.body.value;
+  pool.query(
+    `UPDATE config SET value=${value} WHERE setting='enable_website'`,
+    (err, rows) => {
+      if (err) throw err;
+      res.send({ value: value });
+    }
+  );
+});
+
 app.get("/getAll", (req, res) => {
   const type = req.query.type;
 

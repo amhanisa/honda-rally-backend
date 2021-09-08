@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 08, 2021 at 07:47 AM
+-- Generation Time: Sep 08, 2021 at 12:11 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.4.22
 
@@ -20,6 +20,24 @@ SET time_zone = "+00:00";
 --
 -- Database: `rally`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `config`
+--
+
+CREATE TABLE `config` (
+  `setting` varchar(50) NOT NULL,
+  `value` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `config`
+--
+
+INSERT INTO `config` (`setting`, `value`) VALUES
+('enable_website', '0');
 
 -- --------------------------------------------------------
 
@@ -52,6 +70,12 @@ INSERT INTO `score` (`id`, `team`, `score`, `type`, `last_update`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `config`
+--
+ALTER TABLE `config`
+  ADD PRIMARY KEY (`setting`);
 
 --
 -- Indexes for table `score`
